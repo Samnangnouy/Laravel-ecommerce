@@ -24,6 +24,12 @@ Route::get('category/{cate_slug}/{prod_slug}', [App\Http\Controllers\Frontend\Fr
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('add-to-cart', [App\Http\Controllers\Frontend\CartController::class, 'addProduct']);
+Route::post('delete-cart-item', [App\Http\Controllers\Frontend\CartController::class, 'deleteproduct']);
+Route::post('update-cart', [App\Http\Controllers\Frontend\CartController::class, 'updatecart']);
+Route::middleware(['auth'])->group(function (){
+    Route::get('cart', [App\Http\Controllers\Frontend\CartController::class, 'viewcart']);
+});
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard',[App\Http\Controllers\Admin\FrontendController::class, 'index']); // Use the full namespace
