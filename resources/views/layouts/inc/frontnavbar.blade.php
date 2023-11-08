@@ -7,13 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ url('category') }}">Category</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ url('cart') }}">Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url('wishlist') }}">Wishlist</a>
         </li>
         @guest
               @if (Route::has('login'))
@@ -34,6 +37,9 @@
                       {{ Auth::user()->name }}
                   </a>
                   <ul class="dropdown-menu">
+                      <li>
+                          <a class="dropdown-item" href="{{ url('my-orders') }}">My Order</a>
+                      </li>
                       <li>
                           <a class="dropdown-item" href="#">My Profile</a>
                       </li>
