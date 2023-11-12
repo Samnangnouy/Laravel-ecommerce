@@ -80,8 +80,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php $total = 0; @endphp
                                     @foreach($cartitems as $item)
                                     <tr>
+                                        @php $total += ($item->products->selling_price * $item->prod_qty) @endphp
                                         <td>{{ $item->products->name}}</td>
                                         <td>{{ $item->prod_qty }}</td>
                                         <td>{{ $item->products->selling_price }}</td>
@@ -89,8 +91,10 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <h6 class="px-2">Grand Total: <span class="float-end">{{ $total }}</span></h6>
                             <hr>
-                            <button type="submit" class="btn btn-primary w-100">Place Order</button>
+                            <input type="hidden" name="payment_mode" value="COD">
+                            <button type="submit" class="btn btn-primary w-100">Place Order | COD</button>
                             @else
                                 <div class="card-body text-center">
                                     <h2>No products in cart</h2>

@@ -22,7 +22,8 @@ Route::get('view-category/{slug}', [App\Http\Controllers\Frontend\FrontendContro
 Route::get('category/{cate_slug}/{prod_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'productview']);
 
 Auth::routes();
-
+Route::get('load-cart-data', [App\Http\Controllers\Frontend\CartController::class, 'cartcount']);
+Route::get('load-wishlist-data', [App\Http\Controllers\Frontend\WishlistController::class, 'wishcount']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('add-to-cart', [App\Http\Controllers\Frontend\CartController::class, 'addProduct']);
 Route::post('delete-cart-item', [App\Http\Controllers\Frontend\CartController::class, 'deleteproduct']);
