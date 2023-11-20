@@ -36,8 +36,8 @@ Route::middleware(['auth'])->group(function (){
     Route::post('place-order', [App\Http\Controllers\Frontend\CheckoutController::class, 'placeorder']);
     Route::get('my-orders', [App\Http\Controllers\Frontend\UserController::class, 'index']);
     Route::get('view-order/{id}', [App\Http\Controllers\Frontend\UserController::class, 'view']);
-    
     Route::get('wishlist', [App\Http\Controllers\Frontend\WishlistController::class, 'index']);
+    Route::post('add-rating', [App\Http\Controllers\Frontend\RatingController::class, 'add']);
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
