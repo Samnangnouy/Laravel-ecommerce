@@ -20,11 +20,13 @@ Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index
 Route::get('category', [App\Http\Controllers\Frontend\FrontendController::class, 'category']);
 Route::get('view-category/{slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'viewcategory']);
 Route::get('category/{cate_slug}/{prod_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'productview']);
+Route::get('product-list', [App\Http\Controllers\Frontend\FrontendController::class, 'productlistAjax']);
+Route::post('searchproduct', [App\Http\Controllers\Frontend\FrontendController::class, 'searchProduct']);
 
 Auth::routes();
 Route::get('load-cart-data', [App\Http\Controllers\Frontend\CartController::class, 'cartcount']);
 Route::get('load-wishlist-data', [App\Http\Controllers\Frontend\WishlistController::class, 'wishcount']);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('add-to-cart', [App\Http\Controllers\Frontend\CartController::class, 'addProduct']);
 Route::post('delete-cart-item', [App\Http\Controllers\Frontend\CartController::class, 'deleteproduct']);
 Route::post('update-cart', [App\Http\Controllers\Frontend\CartController::class, 'updatecart']);
@@ -38,6 +40,10 @@ Route::middleware(['auth'])->group(function (){
     Route::get('view-order/{id}', [App\Http\Controllers\Frontend\UserController::class, 'view']);
     Route::get('wishlist', [App\Http\Controllers\Frontend\WishlistController::class, 'index']);
     Route::post('add-rating', [App\Http\Controllers\Frontend\RatingController::class, 'add']);
+    Route::get('add-review/{product_slug}/userreview', [App\Http\Controllers\Frontend\ReviewController::class, 'add']);
+    Route::post('add-review', [App\Http\Controllers\Frontend\ReviewController::class, 'create']);
+    Route::get('edit-review/{product_slug}/userreview', [App\Http\Controllers\Frontend\ReviewController::class, 'edit']);
+    Route::put('update-review', [App\Http\Controllers\Frontend\ReviewController::class, 'update']);
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {

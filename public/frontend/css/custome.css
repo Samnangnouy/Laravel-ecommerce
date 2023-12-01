@@ -49,3 +49,10 @@
 .checked{
   color: #ffd900;
 }
+.search-bar{
+  width: 40%;
+  margin-left: 5%;
+}
+.ui-menu{
+  z-index: 3500 !important;
+}
